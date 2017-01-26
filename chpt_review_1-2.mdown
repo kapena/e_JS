@@ -1,0 +1,425 @@
+## Key Topics and Review   
+Making sense of the JavaScript one keystroke at a time.  
+A review of Eloquent JavaScript **Chapters 1 & 2.**
+### Comparisons and Boolean Values
+A boolean value produces a `true` or `false` value.
+To create a boolean value you use comparisons and logical operators.  
+### Comparisons
+
+ Greater than
+`<`
+
+ Less than
+`>`
+
+ Greater than equal to
+`>=`
+
+ Less than equal to
+`<=`
+
+ Strict Equal to
+`===`
+
+Equal to
+`==`
+
+ Not equal to
+`!=`
+
+### Example
+`console.log( 3 > 2);`
+`true`
+
+`console.log(3 < 2);`
+`false`
+
+Strings can be compared against each other to produce a `true` or `false` result.
+Upper case letters are always **less** than lower case letters. When comparing strings JavaScript goes *left to right*.
+
+`"A" < "b"`
+`true`
+
+### Logical operators
+Logical operators can are used to reason with booleans.
+
+**`!` (not)**
+
+Flips the value given to it.
+
+`!true` produces `false`
+
+
+**`||` (Or)**
+
+Produces `true` if either of the values given to it are `true`.
+
+
+**`&&` (And)**
+
+Results in `true` if  values given to it are `true`
+
+`console.log(true && false);`
+`false`
+
+`console.log(true && true);`
+`true`
+
+### Undefined Values
+`undefined` and `null` are values that carry no information.
+
+### Automatic Type conversion
+
+A operator that is applied to the wrong type of value will convert that value to the type it wants. This is called **type conversion**.
+
+When something that dose not map to a number in an obvious way `NaN` is produced. When types differ JavaScript will try to convert one value to the other value's type.
+
+### Examples
+```javascript
+console.log(8 * null);
+// null becomes 0
+
+console.log("5"-1);
+// "5" becomes 5 string to number
+
+console.log("5" + 1);
+// string comparison 51
+
+console.log("five" * 2);
+//NaN Not a Number
+
+console.log(false == 0);
+// true
+```
+
+To test whether a value has a real value instead of `null` or `undefined`, you can compare it to `null` with the `==` or `!=` operators.
+
+When `null` or `undefined` occurs on either side of the operator, it produces `true` **only if both sides are one of `null` or `undefined`**
+
+`console.log( null == undefined );`
+
+`true`
+
+### Rules of automatic type conversion
+Converting strings and numbers to Boolean values `true` or `false` state the following.
+
+`0`, `NaN` and `""`  = `false`
+
+**All other values count as `true`**
+
+So expressions like `0 == false` count at `true`
+
+## How to avoid automatic type conversions
+When you don't want automatic type conversions to occur then use `===` precisely equal too and `!==` not precisely equal to.
+
+`"" === false`
+
+`false`
+
+## Short-circuiting of logical operators
+
+`&&` and `||` work with values of different types in a certain way.
+
+They convert the value on the **left** side to a **Boolean** in order to decide what to do. However it really depends on the operator and the result of that conversion that they return the original left-hand value or right-handed value.
+
+The `||` operator will return the value on the **left** when it can be converted to `true` and will return the value on its right otherwise `false`.
+
+`console.log(null || "user");`
+
+user
+
+`console.log("Karl" || "user");`
+
+Karl
+
+This allows `||` as a fall back on a default value. For example if you give `||` a expression that makes a empty value on the **left** then the value on the **right** will be used.
+
+`||` Value on **RIGHT** used for fall back
+
+`&&` works similarly but reversed. The value to it's **left** is used for a fall back.
+
+`&&` Value on **LEFT** used for fall back.
+
+Note about `||` and `&&` that the expression to the **right is only evaluated when necessary.**
+
+`true  || X` no matter what X is it will result in `true`;
+`false && X` ignore X produce `true`
+
+# Chapter 2 Review Key Topics
+
+## Statements and Expressions
+
+Code that produces a value is a **expression**. Values are written literally.
+22 or "String" is a expression.
+
+Expressions can nest them selfs like sub-sentences can contain there own sub-sentences. Combining expressions can create complex computations.  
+
+Statements make up a program.
+Expressions make up values.
+
+*A statement stands on its own and amounts to something only if it affects the world.* Changes are called side effects.
+
+Here is a simple statement that produces `1` as a value.
+`1;`
+
+## Variables
+
+Variables **catch** and **hold** values.
+`var caught` is our statement that will produces a value. ` 5 * 5` is the expression. Once a variable has been defined then we can use it as a expression.
+
+`var caught = 5 * 5; `
+
+```javascript
+var ten = 10;
+// use the variable ten as a expression
+console.log(ten * ten);
+// 100
+```
+Variables names cannot contain spaces or start with a digit.
+
+Variables are not attached to values forever. They **grasp** them and can let go at anytime. The `=` can be used to point the existing variable to a new value.
+
+```javascript
+var mood = "light";
+console.log(mood);
+// giving mood a new value  
+mood = "dark";
+console.log(mood);
+// mood's new value of dark
+```
+
+Think of variables as hands that can **grasp** many objects. A program can access the values that it has it's grasp on. If you need to remember something new then you grow another hand and give it a value to **grasp** onto.
+
+Variables need to have values. If they don't then you get `undefined`.
+
+```javascript
+// owes me 140
+var owesMe = 140;
+// pays me 35
+owesMe = owesMe - 35
+console.log(owesMe);
+```
+A single variable statement can define multiple variables by using commas to separate each one.
+
+`var one = 1, two = 2;`
+
+## Functions
+
+A function is used to store information and create a value from that information. We call a functions to use them. To call a function we place ()s after its name like so `someName();`.  
+
+The `console.log();` function prints to the browser console.
+
+## Return Values
+Functions can produces values such as `Math.min` and `Math.max` functions do.
+When a function produces a value it returns that value. Anything that produces a value is a expression.
+
+`Math.min` is used as an input to the `+` operator.
+
+`console.log(Math.min(2, 4) + 100);` 102
+
+## Control Flow
+When their is more than one statement in a program then each statement is executed from to to bottom. This is called control flow. Think of control flow as a linear line that flows across the page.
+
+## Conditional Execution
+Two different routes based on a Boolean value. Conditional execution is written with the `if` keyword.
+
+```javascript
+// user picks a number
+// number function returns NaN when not given a valid number
+var theNum = Number(prompt("pick a number"));
+// if user enters not a valid number then code will not execute in if statement
+// unless theNum is not a number
+if (!isNaN(theNum))
+  console.log("your number is the square root of " + theNum * theNum);
+```
+
+Using the `if else` statement
+
+```javascript
+// user picks a number
+// number function returns NaN when not given a valid number
+var theNum = Number(prompt("pick a number"));
+// if user enters not a valid number then code will not execute in if statement
+// unless theNum is not a number
+if (!isNaN(theNum))
+  console.log("your number is the square root of " + theNum * theNum);
+  // execute else if number is not valid
+  else
+  console.log('you did not give me a number')
+```
+
+multiple `if / else` s can be chained together like so.
+
+```javascript
+var num = Number(prompt('pick a number','0'));
+// if num is less than 10
+if (num < 10)
+  console.log('sm');
+// second if
+// if between 10 and 100
+// num less than 100
+if else(num < 100)
+  console.log('med');
+// if not any of the numbers
+else
+  console.log('lrg');
+```
+
+## While and Do Loops
+
+Looping allows is to go back to a point in our program where we were before and repeat it. The world `while` is followed by an expression just like a `if` statement. The loop executes the statement as long as the expression evaluates to `true`.
+
+```javascript
+// while loop that counts to 10
+// start @ 0
+var count = 0;
+// count is less than 11
+while ( count < 11 ){
+  // increment by 1 each time loop passes
+  count = count + 1;
+  console.log(count);
+}
+```
+
+While loop that calculates 2 the 10th power
+
+```javascript
+// result
+var result = 1;
+// count how often * 2
+var counter = 0;
+// counter less than 10
+while (counter < 10) {
+  // multiply result  * 2
+  result = result * 2;
+  // increment up
+  count = count + 1;
+}
+console.log(result);
+```
+
+Do loops execute their body once and then tests if it should execute again after the first execution.
+
+```javascript
+do {
+  var name = prompt('Who you ?');
+  // asks for name again if you did not enter a name.
+  // all strings except for " " convert to true
+} while (!name);
+console.log(name);
+```
+
+## For loops
+Initialize, Check, Update
+
+Initialize loop `var counter = 0;`
+Check if loop can continue `counter < 10;`
+Updates loop after iteration `counter = counter + 1`
+
+```javascript
+for (var counter = 0; counter < 10; counter = counter +1){
+  console.log(counter);
+}
+```
+
+2 to the 10th power for loop
+
+```javascript
+var result = 1;
+for (var counter = 0; counter < 10; counter = counter + 1){
+  // result * 2
+  result = result * 2;
+  console.log(result);
+}
+```
+
+Breaking out of a loop  w the `break` statement
+```javascript
+for (var current = 20; ; current++){
+  // testing if current is divisible by 7 if so the remainder of their division is 0
+  if (current % 7 === 0)
+  // loop will never stop unless break is executes
+    break;
+}
+console.log(current);
+```
+
+## Updating Variable Shortcutting
+
+`counter = counter  + 1` can be written like `counter += 1`
+
+`counter = counter - 1` can be written like `counter -= 1`
+
+`result = result * 2 ` can be written `result *= 2`
+
+`+=` ,`-=``,`*=`
+
+`counter += 1` can be even shorter `counter++`
+`counter -=1` `counter---`
+
+
+## Switch statement
+Switch Statements are used instead of writing long `if else` statements.
+
+In a switch you can have as many `cases` as needed. The switch statement will respond to the value that the switch was given or default value if no value was produced.
+
+```javascript
+switch (prompt("What is the weather like?")) {
+  // user enters rainy
+  case "rainy":
+    console.log("Remember to bring an umbrella.");
+    break;
+    // user enters sunny
+  case "sunny":
+    console.log("Dress lightly.");
+  case "cloudy":
+    console.log("Go outside.");
+    break;
+  default:
+    // nothing was entered
+    console.log("Unknown weather type!");
+    break;
+}
+```
+# Exercises!
+
+## Looping a triangle!
+Write a loop that makes seven calls to `console.log` to output the following
+```
+#
+##
+###
+####
+#####
+```
+
+Hint: You can find the length of a string by writing `.length` after it.
+Hint: For loop
+
+
+## FizzBuzz
+
+Print numbers 1 - 100 with 3 exceptions.
+1. Numbers divisible by 3 print **FIZZ**
+2. Numbers divisible by 5 print **BUZZ**
+3. Then for numbers divisible by **both** 3 and 5 print **FIZZBUZZ**
+
+Hint: for loop and conditional expression
+
+
+## Chessboard
+
+Create a string that represents an 8×8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a “#” character. The characters should form a chess board.
+
+Hint: 2 for loops and a conditional expression. White squares are even. Black squares are odd. use x and y axis to make grid.
+
+```
+# # # #
+# # # #
+ # # # #
+# # # #
+ # # # #
+# # # #
+ # # # #
+# # # #
+```
